@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class TCPServer {
 
@@ -53,6 +54,8 @@ public class TCPServer {
 					// 6. 데이터 쓰기
 					os.write(data.getBytes("utf-8"));
 				}
+			} catch (SocketException e){
+				System.out.println("[server] sudden closed by client");
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {

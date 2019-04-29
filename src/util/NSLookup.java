@@ -20,7 +20,7 @@ public class NSLookup {
 			{
 				System.out.print(">");
 				line = br.readLine();
-				if(line.compareToIgnoreCase("exit") == 0)
+				if("exit".compareToIgnoreCase(line) == 0)
 					break;
 				nslookup(line);
 			}

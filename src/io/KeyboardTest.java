@@ -23,10 +23,9 @@ public class KeyboardTest {
 				System.out.println(">>" + line);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;
-		}finally {
+		} finally {
 			if(br != null)
 			{
 				try {
