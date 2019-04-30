@@ -18,7 +18,11 @@ public class TCPServer {
 		try {
 			// 1. 서버소켓 생성
 			serverSocket = new ServerSocket();
-
+			
+			// 1-1. Time-Wait 시간에 소켓에 포트번호 할당을 가능하게 하기 위해서
+			serverSocket.setReuseAddress(true);
+			
+			
 			// 2. 바인딩(binding) : Socket에 SocketAddress(IP addr + port) 바인딩
 			InetAddress inetAddr = InetAddress.getLocalHost();
 //			String localhost = inetAddr.getHostAddress();

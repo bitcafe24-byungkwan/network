@@ -24,7 +24,7 @@ public class EchoClient {
 			scanner = new Scanner(System.in);
 			// 2. 소켓 생성
 			sock = new Socket();
-
+			
 			// 3. 서버 연결
 			sock.connect(new InetSocketAddress(SERVER_IP, SERVER_PORT));
 			log("connected");
@@ -52,11 +52,9 @@ public class EchoClient {
 					break;
 				}
 				
-				//8 콘솔 출력
+				//8. 콘솔 출력
 				System.out.println("<<" + data);
 			}
-			
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
