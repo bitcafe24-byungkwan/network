@@ -7,12 +7,26 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 
 public class RequestHandler extends Thread {
 	private Socket socket;
-	private static final String DOCUMENT_ROOT = "./webapp";
+	private static String documentRoot = "";
+	static {
+		try {
+			documentRoot = new File(RequestHandler.class.
+					getProtectionDomain().
+					getCodeSource().
+					getLocation().
+					toURI()).
+					getPath() + "/webapp";
+			//System.out.println("--> "+documentRoot);
+		} catch (URISyntaxException e) {			
+			e.printStackTrace();
+		}
+	}
 	public RequestHandler( Socket socket ) {
 		this.socket = socket;
 	}
@@ -96,7 +110,7 @@ public class RequestHandler extends Thread {
 			url = "/index.html";
 		}
 		
-		File file = new File(DOCUMENT_ROOT + url);
+		File file = new File(documentRoot + url);
 		if(file.exists() == false) {
 //			HTTP/1.1 404 File Not Found\r\n
 //			Content-Type:text/html; charset=utf-8\r\n
