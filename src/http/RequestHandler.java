@@ -15,18 +15,10 @@ public class RequestHandler extends Thread {
 	private Socket socket;
 	private static String documentRoot = "";
 	static {
-		try {
-			documentRoot = new File(RequestHandler.class.
-					getProtectionDomain().
-					getCodeSource().
-					getLocation().
-					toURI()).
-					getPath() + "/webapp";
-			//System.out.println("--> "+documentRoot);
-		} catch (URISyntaxException e) {			
-			e.printStackTrace();
-		}
+		documentRoot = RequestHandler.class.getClass().getResource("/webapp").getPath();
+		System.out.println(documentRoot);
 	}
+	
 	public RequestHandler( Socket socket ) {
 		this.socket = socket;
 	}
